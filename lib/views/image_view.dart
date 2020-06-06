@@ -24,9 +24,7 @@ class ImageView extends StatefulWidget {
 class _ImageViewState extends State<ImageView> { 
  Random rng = new Random();
   var filePath;
-
-   File _image;
-  File _imageFile;
+ 
 
   _launchURL(String url) async {
     if (await canLaunch(url)) {
@@ -158,11 +156,8 @@ class _ImageViewState extends State<ImageView> {
     var response = await Dio().get(widget.imgPath,
         options: Options(responseType: ResponseType.bytes));
     final result = await ImageGallerySaver.saveImage(Uint8List.fromList(response.data));
-    print(result);
-    File imgFile = new File('$result/screenshot${rng.nextInt(200)}.png');
-    setState(() {
-      _imageFile = imgFile;
-    });
+    print(result); 
+    
     Navigator.pop(context);
   }
 
